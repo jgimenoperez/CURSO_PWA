@@ -13,8 +13,8 @@ if ( navigator.serviceWorker ) {
                 // }, 3000);
                 Notification.requestPermission().then( result => {
             
-                    console.log(result);
-                    reg.showNotification('Hola Mundo!');
+                    console.log("result",result);
+                    reg.showNotification('Hola Mundoa!');
                     
             
                 });

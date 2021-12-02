@@ -62,7 +62,6 @@ self.addEventListener('sync', event => {
 
 });
 
-
 // PUSH: Manejar las push notifications
 self.addEventListener('push', event => {
 
