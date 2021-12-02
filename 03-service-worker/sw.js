@@ -11,9 +11,11 @@ self.addEventListener('install', event => {
 
         setTimeout(() => {
             console.log('SW: Instalaciones terminadas');
+
+            //Activar serviceworker de manera automatica.
             self.skipWaiting();
             resolve();
-        }, 1);
+        }, 1000);
 
     });
 
