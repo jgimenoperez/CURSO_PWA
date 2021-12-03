@@ -14,7 +14,7 @@ if ( navigator.serviceWorker ) {
                 Notification.requestPermission().then( result => {
             
                     console.log("result",result);
-                    reg.showNotification('Hola Mundoa!');
+                    reg.showNotification('Hola Mundo!');
                     
             
                 });
