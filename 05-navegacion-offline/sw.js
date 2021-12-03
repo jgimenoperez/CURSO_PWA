@@ -42,10 +42,12 @@ self.addEventListener('install', e => {
                 '/js/app.js',
                 '/img/no-img.jpg',
                 '/pages/offline.html'
+                
             ]);
 
         
         });
+
 
     const cacheInmutable = caches.open( CACHE_INMUTABLE_NAME )
             .then( cache => cache.add('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'));
