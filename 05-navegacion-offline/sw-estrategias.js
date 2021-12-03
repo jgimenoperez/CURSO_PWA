@@ -42,7 +42,8 @@ self.addEventListener('install', e => {
                 '/css/style.css',
                 '/img/main.jpg',
                 '/js/app.js',
-                '/img/no-img.jpg'
+                '/img/no-img.jpg',
+                '/pages/page2.html'
             ]);
 
         
@@ -61,17 +62,17 @@ self.addEventListener('install', e => {
 self.addEventListener('fetch', e =>{
 
     // 5- Cache & Network Race
-
+    console.log(111111111)
     const respuesta = new Promise( (resolve, reject) =>{
-
+        console.log(2222)
         let rechazada = false;
 
-        const falloUnaVez = () => {
-
+        const falloUnaVez = (origen) => {
+            console.log(3333,origen)
             if ( rechazada ) {
-                
+                 console.log(4444)
                 if ( /\.(png|jpg)$/i.test( e.request.url ) ) {
-
+                    console.log(2222)
                     resolve( caches.match('/img/no-img.jpg')  );
 
                 } else { 
@@ -80,6 +81,7 @@ self.addEventListener('fetch', e =>{
 
 
             } else {
+                console.log(4444)
                 rechazada = true;
             }
 
@@ -89,12 +91,15 @@ self.addEventListener('fetch', e =>{
 
 
         fetch( e.request ).then( res => {
-            res.ok ? resolve(res) : falloUnaVez();
-        }).catch( falloUnaVez );
+            console.log("respuesta fetch",res)
+            return  res.ok ? resolve(res) : falloUnaVez('fetch1');
+        }).catch( falloUnaVez('fetch2') );
+ 
 
 
         caches.match( e.request ).then( res => {
-            res ? resolve( res ) : falloUnaVez();
+            console.log("respuesta match",res)
+            res ? resolve( res ) : falloUnaVez('match');
         }).catch( falloUnaVez );
 
 
@@ -127,7 +132,7 @@ self.addEventListener('fetch', e =>{
 
     // 3- Network with cache fallback
     // const respuesta = fetch( e.request ).then( res => {
-
+    // Primero internet y luego cache
     //     if ( !res ) return caches.match( e.request );
 
     //     caches.open( CACHE_DYNAMIC_NAME )
@@ -149,6 +154,8 @@ self.addEventListener('fetch', e =>{
 
 
     // 2- Cache with Network Fallback
+    // Intenta cacje y si no existe a la web
+
     // const respuesta = caches.match( e.request )
     //     .then( res => {
 
@@ -180,6 +187,7 @@ self.addEventListener('fetch', e =>{
 
 
     // 1- Cache Only
+    // Busca en todos los caches del dominio
     // e.respondWith( caches.match( e.request ) );
 
 });
