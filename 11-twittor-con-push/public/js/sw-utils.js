@@ -26,10 +26,10 @@ function actualizaCacheStatico( staticCache, req, APP_SHELL_INMUTABLE ) {
 
     if ( APP_SHELL_INMUTABLE.includes(req.url) ) {
         // No hace falta actualizar el inmutable
-         console.log('existe en inmutable', req.url );
+        // console.log('existe en inmutable', req.url );
 
     } else {
-        //  console.log('actualizando', req.url );
+        // console.log('actualizando', req.url );
         return fetch( req )
                 .then( res => {
                     return actualizaCacheDinamico( staticCache, req, res );
@@ -44,13 +44,17 @@ function actualizaCacheStatico( staticCache, req, APP_SHELL_INMUTABLE ) {
 function manejoApiMensajes( cacheName, req ) {
 
 
-    if ( req.clone().method === 'POST' ) {
+    if ( (req.url.indexOf('/api/key') >= 0 ) || req.url.indexOf('/api/subscribe') >= 0 ) {
+
+        return fetch( req );
+
+    } else if ( req.clone().method === 'POST' ) {
         // POSTEO de un nuevo mensaje
-        
+
         if ( self.registration.sync ) {
             return req.clone().text().then( body =>{
     
-                console.log(body);
+                // console.log(body);
                 const bodyObj = JSON.parse( body );
                 return guardarMensaje( bodyObj );
     
@@ -63,7 +67,7 @@ function manejoApiMensajes( cacheName, req ) {
     } else {
 
         return fetch( req ).then( res => {
-
+    
             if ( res.ok ) {
                 actualizaCacheDinamico( cacheName, req, res.clone() );
                 return res.clone();
