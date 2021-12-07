@@ -1,10 +1,11 @@
-
+console.log(1111)
 
 // Detectar si podemos usar Service Workers
 if ( navigator.serviceWorker ) {
+    console.log(2222)
     navigator.serviceWorker.register('/sw.js')
             .then( reg => {
-
+                console.log(3333)
                 // setTimeout(() => {
                     
                 //     reg.sync.register('posteo-gatitos');

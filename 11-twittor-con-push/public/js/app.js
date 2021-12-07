@@ -271,10 +271,11 @@ function notificarme() {
         console.log('Este navegador no soporta notificaciones');
         return;
     }
-
+    console.log(Notification.permission)
     if ( Notification.permission === 'granted' ) {
-        
+        //OTORGADO
         // new Notification('Hola Mundo! - granted');
+
         enviarNotificacion();
 
     } else if ( Notification.permission !== 'denied' || Notification.permission === 'default' )  {
@@ -296,7 +297,7 @@ function notificarme() {
 
 }
 
-// notificarme();
+notificarme();
 
 
 // Get Key
