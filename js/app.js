@@ -1,6 +1,6 @@
 
 var url = window.location.href;
-var swLocation = '/twittor/sw.js';
+var swLocation = '/CURSO_PWA/sw.js';
 
 var swReg;
 
