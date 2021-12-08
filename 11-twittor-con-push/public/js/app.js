@@ -187,7 +187,7 @@ function getMensajes() {
         .then( res => res.json() )
         .then( posts => {
 
-            console.log(posts);
+            //console.log(posts);
             posts.forEach( post =>
                 crearMensajeHTML( post.mensaje, post.user ));
 
@@ -234,6 +234,8 @@ isOnline();
 // Notificaciones
 function verificaSuscripcion( activadas ) {
 
+    //console.log(activadas)
+
     if ( activadas ) {
         
         btnActivadas.removeClass('oculto');
@@ -276,17 +278,17 @@ function notificarme() {
         //OTORGADO
         // new Notification('Hola Mundo! - granted');
 
-        enviarNotificacion();
+        //enviarNotificacion();
 
     } else if ( Notification.permission !== 'denied' || Notification.permission === 'default' )  {
 
         Notification.requestPermission( function( permission ) {
 
-            console.log( permission );
+            //console.log( permission );
 
             if ( permission === 'granted' ) {
                 // new Notification('Hola Mundo! - pregunta');
-                enviarNotificacion();
+                //enviarNotificacion();
             }
 
         });
@@ -317,11 +319,11 @@ function getPublicKey() {
 
 // getPublicKey().then( console.log );
 btnDesactivadas.on( 'click', function() {
-
+    
     if ( !swReg ) return console.log('No hay registro de SW');
 
     getPublicKey().then( function( key ) {
-
+        // console.log(key)    
         swReg.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: key
@@ -329,7 +331,7 @@ btnDesactivadas.on( 'click', function() {
         .then( res => res.toJSON() )
         .then( suscripcion => {
 
-            // console.log(suscripcion);
+            //  console.log(suscripcion);
             fetch('api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -351,8 +353,9 @@ btnDesactivadas.on( 'click', function() {
 
 function cancelarSuscripcion() {
 
+    //Llama a la suscripcion actual
     swReg.pushManager.getSubscription().then( subs => {
-
+        console.log(subs)
         subs.unsubscribe().then( () =>  verificaSuscripcion(false) );
 
     });

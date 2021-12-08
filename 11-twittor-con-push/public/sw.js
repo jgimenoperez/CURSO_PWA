@@ -132,7 +132,7 @@ self.addEventListener('sync', e => {
 // Escuchar PUSH
 self.addEventListener('push', e => {
 
-    // console.log(e);
+     console.log(e);
 
     const data = JSON.parse( e.data.text() );
 
