@@ -31,7 +31,7 @@ function postearMensajes() {
 
             const doc = row.doc;
 
-            const fetchPom =  fetch('api', {
+            const fetchPom =  fetch('http://localhost:3000/API', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

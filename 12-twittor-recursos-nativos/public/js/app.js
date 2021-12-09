@@ -277,7 +277,7 @@ postBtn.on('click', function() {
 // Obtener mensajes del servidor
 function getMensajes() {
 
-    fetch('api')
+    fetch('http://localhost:3000/api')
         .then( res => res.json() )
         .then( posts => {
 
@@ -399,7 +399,7 @@ function getPublicKey() {
     //     .then( res => res.text())
     //     .then( console.log );
 
-    return fetch('api/key')
+    return fetch('http://localhost:3000/api/key')
         .then( res => res.arrayBuffer())
         // returnar arreglo, pero como un Uint8array
         .then( key => new Uint8Array(key) );
@@ -409,7 +409,7 @@ function getPublicKey() {
 
 // getPublicKey().then( console.log );
 btnDesactivadas.on( 'click', function() {
-
+    
     if ( !swReg ) return console.log('No hay registro de SW');
 
     getPublicKey().then( function( key ) {
@@ -420,9 +420,10 @@ btnDesactivadas.on( 'click', function() {
         })
         .then( res => res.toJSON() )
         .then( suscripcion => {
-
+            
+            console.log('suscripcion',suscripcion)
             // console.log(suscripcion);
-            fetch('api/subscribe', {
+            fetch('http://localhost:3000/API/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify( suscripcion )

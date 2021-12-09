@@ -60,6 +60,8 @@ self.addEventListener('activate', e => {
 
         keys.forEach( key => {
 
+            
+
             if (  key !== STATIC_CACHE && key.includes('static') ) {
                 return caches.delete(key);
             }
@@ -84,24 +86,29 @@ self.addEventListener( 'fetch', e => {
 
     let respuesta;
 
+
+
     if ( e.request.url.includes('/api') ) {
 
-        // return respuesta????
+        // return respuesta???
+        console.log(111111,e.request.url)
         respuesta = manejoApiMensajes( DYNAMIC_CACHE, e.request );
+        
 
     } else {
 
+        console.log(22222,e.request.url)
         respuesta = caches.match( e.request ).then( res => {
 
             if ( res ) {
-                
+                console.log(333,e.request.url)
                 actualizaCacheStatico( STATIC_CACHE, e.request, APP_SHELL_INMUTABLE );
                 return res;
                 
             } else {
-    
+                console.log(444,e.request.url)
                 return fetch( e.request ).then( newRes => {
-    
+
                     return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
     
                 });
@@ -126,7 +133,6 @@ self.addEventListener('sync', e => {
 
         // postear a BD cuando hay conexión
         const respuesta = postearMensajes();
-        
         e.waitUntil( respuesta );
     }
 
