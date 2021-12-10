@@ -3,9 +3,8 @@
 // Guardar  en el cache dinamico
 function actualizaCacheDinamico( dynamicCache, req, res ) {
 
-    console.log(5555,res.ok)
     if ( res.ok ) {
-        console.log(6666,res.ok)
+        
         return caches.open( dynamicCache ).then( cache => {
 
             cache.put( req, res.clone() );

@@ -489,7 +489,7 @@ btnLocation.on('click', () => {
 
     navigator.geolocation.getCurrentPosition( pos => {
 
-        console.log( pos );
+        
         mostrarMapaModal( pos.coords.latitude, pos.coords.longitude );
 
         lat = pos.coords.latitude;
