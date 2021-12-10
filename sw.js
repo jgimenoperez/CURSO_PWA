@@ -191,7 +191,6 @@ self.addEventListener('notificationclick', e => {
     const notificacion = e.notification;
     const accion = e.action;
 
-
     console.log({ notificacion, accion });
     // console.log(notificacion);
     // console.log(accion);
