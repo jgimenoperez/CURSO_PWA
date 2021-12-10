@@ -11,7 +11,7 @@ const INMUTABLE_CACHE = 'inmutable-v1';
 
 
 const APP_SHELL = [
-   // '/',
+   '/',
     'index.html',
     'css/style.css',
     'img/favicon.ico',
@@ -44,8 +44,8 @@ self.addEventListener('install', e => {
     const cacheStatic = caches.open( STATIC_CACHE ).then(cache => 
         cache.addAll( APP_SHELL ));
 
-    // const cacheInmutable = caches.open( INMUTABLE_CACHE ).then(cache => 
-    //     cache.addAll( APP_SHELL_INMUTABLE ));
+    const cacheInmutable = caches.open( INMUTABLE_CACHE ).then(cache => 
+        cache.addAll( APP_SHELL_INMUTABLE ));
 
 
 
@@ -91,24 +91,20 @@ self.addEventListener( 'fetch', e => {
     if ( e.request.url.includes('/api') ) {
 
         // return respuesta???
-        console.log(111111,e.request.url)
         respuesta = manejoApiMensajes( DYNAMIC_CACHE, e.request );
         
 
     } else {
 
-        console.log(22222,e.request.url)
         respuesta = caches.match( e.request ).then( res => {
 
             if ( res ) {
-                console.log(333,e.request.url)
                 actualizaCacheStatico( STATIC_CACHE, e.request, APP_SHELL_INMUTABLE );
                 return res;
                 
             } else {
-                console.log(444,e.request.url)
                 return fetch( e.request ).then( newRes => {
-
+                    console.log(e.request)
                     return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
     
                 });
@@ -194,7 +190,6 @@ self.addEventListener('notificationclick', e => {
 
     const notificacion = e.notification;
     const accion = e.action;
-
 
     console.log({ notificacion, accion });
     // console.log(notificacion);
