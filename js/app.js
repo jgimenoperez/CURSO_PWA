@@ -282,7 +282,7 @@ function getMensajes() {
     });
 }
 
-//getMensajes();
+getMensajes();
 
 
 
