@@ -39,4 +39,12 @@ https://medium.com/inside-smartapps/native-application-vs-progressive-web-app-wh
 
 https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/progressive-web-apps-pros-y-contras/
 
+
+
 https://web.dev/customize-install/
+https://web.dev/manifest-updates/
+https://web.dev/progressive-web-apps/
+https://web.dev/promote-install/
+https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs
+https://developers.google.com/codelabs/pwa-training/pwa03--going-offline?hl=es#0
+http://www.webondevices.com/9-javascript-apis-accessing-device-sensors/
