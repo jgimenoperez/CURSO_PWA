@@ -200,7 +200,6 @@ self.addEventListener('notificationclick', e => {
     // console.log(notificacion);
     // console.log(accion);
     
-
     const respuesta = clients.matchAll()
     .then( clientes => {
 
