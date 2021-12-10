@@ -274,7 +274,7 @@ function getMensajes() {
   fetch('https://vengadoreschat.manosdehada.es/api')
     .then((res) => res.json())
     .then((posts) => {
-      console.log(posts);
+      console.log(2222,posts);
 
       posts.forEach((post) =>
         crearMensajeHTML(post.mensaje, post.user, post.lat, post.lng, post.foto)
@@ -282,6 +282,7 @@ function getMensajes() {
     });
 }
 
+console.log(1111)
 getMensajes();
 
 
