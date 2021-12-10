@@ -31,7 +31,7 @@ function postearMensajes() {
 
             const doc = row.doc;
 
-            const fetchPom =  fetch('http://apirest.s194eae4.alojamientovirtual.com/API', {
+            const fetchPom =  fetch('https://vengadoreschat.manosdehada.es/API', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
