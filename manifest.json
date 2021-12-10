@@ -6,6 +6,8 @@
     "theme_color": "#3498db",
     "display": "standalone",
     "orientation": "portrait",
+    "version": "2.0.0",
+
     "icons": [
         {
             "src": "img/icons/icon-72x72.png",
