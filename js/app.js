@@ -253,7 +253,7 @@ postBtn.on('click', function () {
     foto: foto,
   };
 
-  fetch('http://apirest.s194eae4.alojamientovirtual.com/api', {
+  fetch('https://vengadoreschat.manosdehada.es/api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -271,7 +271,7 @@ postBtn.on('click', function () {
 
 // Obtener mensajes del servidor
 function getMensajes() {
-  fetch('http://apirest.s194eae4.alojamientovirtual.com/api')
+  fetch('https://vengadoreschat.manosdehada.es/api')
     .then((res) => res.json())
     .then((posts) => {
       console.log(posts);
@@ -391,7 +391,7 @@ function getPublicKey() {
     //     .then( res => res.text())
     //     .then( console.log );
 
-    return fetch('http://apirest.s194eae4.alojamientovirtual.com/api/key')
+    return fetch('https://vengadoreschat.manosdehada.es/api/key')
         .then( res => res.arrayBuffer())
         // returnar arreglo, pero como un Uint8array
         .then( key => new Uint8Array(key) );
@@ -415,7 +415,7 @@ btnDesactivadas.on( 'click', function() {
             
             console.log('suscripcion',suscripcion)
             // console.log(suscripcion);
-            fetch('http://apirest.s194eae4.alojamientovirtual.com/API/subscribe', {
+            fetch('https://vengadoreschat.manosdehada.es/API/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify( suscripcion )
