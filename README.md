@@ -38,3 +38,5 @@ https://jelvix.com/blog/pwa-vs-native-app-benefits-for-users-and-developers
 https://medium.com/inside-smartapps/native-application-vs-progressive-web-app-which-one-should-you-choose-5eeaaf6ee92d
 
 https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/progressive-web-apps-pros-y-contras/
+
+https://web.dev/customize-install/
