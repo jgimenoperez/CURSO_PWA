@@ -238,56 +238,48 @@ cancelarBtn.on('click', function() {
 });
 
 // Boton de enviar mensaje
-postBtn.on('click', function() {
+postBtn.on('click', function () {
+  var mensaje = txtMensaje.val();
+  if (mensaje.length === 0) {
+    cancelarBtn.click();
+    return;
+  }
 
-    var mensaje = txtMensaje.val();
-    if ( mensaje.length === 0 ) {
-        cancelarBtn.click();
-        return;
-    }
+  var data = {
+    mensaje: mensaje,
+    user: usuario,
+    lat: lat,
+    lng: lng,
+    foto: foto,
+  };
 
-    var data = {
-        mensaje: mensaje,
-        user: usuario,
-        lat: lat,
-        lng: lng,
-        foto: foto
-    };
+  fetch('http://apirest.s194eae4.alojamientovirtual.com/api', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((res) => console.log('app.js', res))
+    .catch((err) => console.log('app.js error:', err));
 
+  crearMensajeHTML(mensaje, usuario, lat, lng, foto);
 
-    fetch('api', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify( data )
-    })
-    .then( res => res.json() )
-    .then( res => console.log( 'app.js', res ))
-    .catch( err => console.log( 'app.js error:', err ));
-
-
-    crearMensajeHTML( mensaje, usuario, lat, lng, foto );
-    
-    foto = null;
+  foto = null;
 });
-
-
 
 // Obtener mensajes del servidor
 function getMensajes() {
+  fetch('http://apirest.s194eae4.alojamientovirtual.com/api')
+    .then((res) => res.json())
+    .then((posts) => {
+      console.log(posts);
 
-    fetch('http://localhost:3000/api')
-        .then( res => res.json() )
-        .then( posts => {
-
-            console.log(posts);
-
-            posts.forEach( post => 
-                crearMensajeHTML( post.mensaje, post.user, post.lat, post.lng, post.foto ));
-        });
-
-
+      posts.forEach((post) =>
+        crearMensajeHTML(post.mensaje, post.user, post.lat, post.lng, post.foto)
+      );
+    });
 }
 
 //getMensajes();
@@ -399,7 +391,7 @@ function getPublicKey() {
     //     .then( res => res.text())
     //     .then( console.log );
 
-    return fetch('http://localhost:3000/api/key')
+    return fetch('http://apirest.s194eae4.alojamientovirtual.com/api/key')
         .then( res => res.arrayBuffer())
         // returnar arreglo, pero como un Uint8array
         .then( key => new Uint8Array(key) );
@@ -423,7 +415,7 @@ btnDesactivadas.on( 'click', function() {
             
             console.log('suscripcion',suscripcion)
             // console.log(suscripcion);
-            fetch('http://localhost:3000/API/subscribe', {
+            fetch('http://apirest.s194eae4.alojamientovirtual.com/API/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify( suscripcion )
