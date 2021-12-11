@@ -52,3 +52,7 @@ https://web.dev/progressive-web-apps/
 
 
 PWA Launcher
+
+//controlar si esta instalado o no
+https://pwaexperts.io/tutoriales/como-agregar-pwa-home-screen-movil-escritorio-chrome
+https://fontawesome.com/v5.15/icons/arrow-down?style=solid

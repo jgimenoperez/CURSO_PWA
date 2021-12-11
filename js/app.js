@@ -14,6 +14,7 @@ if ( navigator.serviceWorker ) {
 
     window.addEventListener('load', function() {
 
+        
         navigator.serviceWorker.register( swLocation ).then( function(reg){
 
             swReg = reg;
@@ -22,6 +23,37 @@ if ( navigator.serviceWorker ) {
         });
 
     });
+
+    
+
+
+
+    // window.onload = (e) => { 
+    //     console.log('load1')
+    //     let deferredPrompt;
+
+    //     window.addEventListener('beforeinstallprompt', (e) => {
+    //         console.log('beforeinstallprompt')
+
+    //         // Prevent Chrome 67 and earlier from automatically showing the prompt
+    //         e.preventDefault();
+    //         // Stash the event so it can be triggered later.
+    //         deferredPrompt = e;
+    //       });        
+         
+    //     deferredPrompt.prompt();
+
+    // deferredPrompt.userChoice
+    //   .then((choiceResult) => {
+    //     if (choiceResult.outcome === 'accepted') {
+    //       console.log('User accepted the A2HS prompt');
+    //     } else {
+    //       console.log('User dismissed the A2HS prompt');
+    //     }
+    //     deferredPrompt = null;
+    //   });
+
+    // }
 
 }
 
@@ -68,6 +100,9 @@ var modalMapa        = $('.modal-mapa');
 var btnTomarFoto     = $('#tomar-foto-btn');
 var btnPhoto         = $('#photo-btn');
 var contenedorCamara = $('.camara-contenedor');
+
+//var install  = $('#install');
+const install = document.querySelector('#install');
 
 var lat  = null;
 var lng  = null; 
@@ -274,15 +309,13 @@ function getMensajes() {
   fetch('https://vengadoreschat.manosdehada.es/api')
     .then((res) => res.json())
     .then((posts) => {
-      console.log(2222,posts);
-
       posts.forEach((post) =>
         crearMensajeHTML(post.mensaje, post.user, post.lat, post.lng, post.foto)
       );
     });
 }
 
-console.log(1111)
+
 getMensajes();
 
 
@@ -566,6 +599,66 @@ timeline.on('click', 'li', function() {
 
 });
 
+let deferredPrompt;
+const statusInstall = {
+    get: () => {
+      return localStorage.getItem('statusInstall') || null;
+    },
+    set: (status) => {
+      localStorage.setItem('statusInstall', status);
+      return;
+    }
+  }
+
+const installToggle = (element, toAdd, toRemove) => {
+    console.log(element,toAdd,toRemove)
+    element.classList.add(toAdd);
+    element.classList.remove(toRemove);
+  };
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later on the button event.
+    deferredPrompt = e;
+  // Update UI by showing a button to notify the user they can add to home screen
+ 
+    if(!statusInstall.get()) {
+        // Change status prompt
+        installToggle(install, 'show', 'hide');
+    }
+    else{
+        installToggle(install, 'hide', 'show');
+    }
 
 
 
+  });
+  
+
+install.addEventListener('click', ()=>{
+    deferredPrompt.prompt();
+
+    deferredPrompt.userChoice
+    .then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the prompt');
+        statusInstall.set('aceptado')
+      } else {
+        console.log('User dismissed the prompt');
+        statusInstall.set('rechazado');
+      }
+      deferredPrompt = null;
+    });
+})
+
+
+
+window.addEventListener('appinstalled', () => {
+    // // Hide the app-provided install promotion
+    // hideInstallPromotion();
+    // // Clear the deferredPrompt so it can be garbage collected
+    // deferredPrompt = null;
+    // // Optionally, send analytics event to indicate successful install
+    console.log('PWA was installed');
+  });

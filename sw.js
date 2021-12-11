@@ -104,7 +104,7 @@ self.addEventListener( 'fetch', e => {
                 
             } else {
                 return fetch( e.request ).then( newRes => {
-                    console.log(e.request)
+                    //console.log(e.request)
                     return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
     
                 });
