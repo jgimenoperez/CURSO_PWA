@@ -49,3 +49,6 @@ https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PW
 https://developers.google.com/codelabs/pwa-training/pwa03--going-offline?hl=es#0
 http://www.webondevices.com/9-javascript-apis-accessing-device-sensors/
 https://web.dev/progressive-web-apps/
+
+
+PWA Launcher
