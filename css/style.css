@@ -199,6 +199,10 @@ textarea {
   top: 5px;
   left:5px;
   bottom: 10px;
+
+  display: flex;
+  align-items: center;
+
 }
 
 .install.show {
@@ -222,6 +226,7 @@ textarea {
   background: #ffff99;
   color: #333; */
 }
+
 .fab-marker {
   width: 50px;
   height: 50px;

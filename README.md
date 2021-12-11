@@ -56,3 +56,88 @@ PWA Launcher
 //controlar si esta instalado o no
 https://pwaexperts.io/tutoriales/como-agregar-pwa-home-screen-movil-escritorio-chrome
 https://fontawesome.com/v5.15/icons/arrow-down?style=solid
+
+
+
+
+----------------------
+ALINEAR CENTRADO DENTRO DE UN DIV
+
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+
+<head>
+
+<style>
+
+.install {
+  width: 100px;
+  height: 100px;
+  background-color: #91a7cf;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px 0 #666;
+  transition: all 0.1s ease-in-out;
+
+  font-size: 10px;
+  color: white;
+  text-align: center;
+
+
+  position: fixed;
+  top: 5px;
+  left:5px;
+  bottom: 10px;
+
+
+ 
+
+}
+
+.position-absolute__content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+
+p {
+
+   margin: 0 !important;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto;
+ }
+
+
+
+</style>
+</head>
+<body>
+
+  <div id="install" class="install  " title="Instalar APP">
+  	<div class="position-absolute__content">
+    <p>Install</p>
+    <p class="fas fa-arrow-down" style="font-size:15px;padding-top:0px" ></p>
+    </div>
+  </div>
+
+
+<section class="contenedor">
+     <div class="item-1">1</div>
+     <div class="item-2">2</div>  
+     <div class="item-3">3</div>  
+     <div class="item-4">4</div> 
+     <div class="item-5">5</div> 
+     <div class="item-6">6</div>  
+</section>
+
+</body>
+</html>
+
+
