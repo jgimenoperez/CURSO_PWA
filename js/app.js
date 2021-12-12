@@ -646,7 +646,7 @@ install.addEventListener('click', ()=>{
         statusInstall.set('aceptado')
       } else {
         console.log('User dismissed the prompt');
-        statusInstall.set('rechazado');
+       // statusInstall.set('rechazado');
       }
       deferredPrompt = null;
     });
@@ -662,3 +662,7 @@ window.addEventListener('appinstalled', () => {
     // // Optionally, send analytics event to indicate successful install
     console.log('PWA was installed');
   });
+
+      $(function() {
+      $( "#install" ).draggable();
+    });
