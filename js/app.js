@@ -643,7 +643,7 @@ install.addEventListener('click', ()=>{
     .then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the prompt');
-        statusInstall.set('aceptado')
+       // statusInstall.set('aceptado')
       } else {
         console.log('User dismissed the prompt');
        // statusInstall.set('rechazado');
